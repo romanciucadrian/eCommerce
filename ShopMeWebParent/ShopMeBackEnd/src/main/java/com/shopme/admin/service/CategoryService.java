@@ -36,7 +36,7 @@ public class CategoryService implements ICategoryService{
         }
 
 
-        List<Category> rootCategories = categoryRepository.findRootCategories(sort);
+        List<Category> rootCategories = categoryRepository.findRootCategories(sort.ascending());
         return listHierarchicalCategories(rootCategories, sortDir);
     }
 

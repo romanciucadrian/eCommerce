@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -31,10 +32,18 @@ public class CategoryController {
     }
 
     @GetMapping("/categories")
-    public String listAll(Model model) {
+    public String listAll(@Param("sortDir") String sortDir,
+            Model model) {
 
+        if(sortDir == null || sortDir.isEmpty()) {
+            sortDir = "asc";
+        }
 
-        List<Category> listCategories = categoryService.listAll();
+        List<Category> listCategories = categoryService.listAll(sortDir);
+
+        String reverSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
+        model.addAttribute("reverseSortDir", reverSortDir);
         model.addAttribute("listCategories", listCategories);
 
 
