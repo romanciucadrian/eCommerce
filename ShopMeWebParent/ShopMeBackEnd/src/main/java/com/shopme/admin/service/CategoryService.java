@@ -1,15 +1,23 @@
-package com.shopme.admin.category;
-
-import com.shopme.common.entity.Category;
-import org.springframework.stereotype.Service;
+package com.shopme.admin.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Set;
 
+import javax.transaction.Transactional;
+
+import org.springframework.stereotype.Service;
+
+import com.shopme.admin.error.CategoryNotFoundException;
+import com.shopme.admin.repository.CategoryRepository;
+import com.shopme.admin.service.impl.ICategoryService;
+import com.shopme.common.entity.Category;
+
 @Service
-public class CategoryService {
+@Transactional
+public class CategoryService implements ICategoryService{
+
 
     private final CategoryRepository categoryRepository;
 
@@ -17,15 +25,11 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public Category save(Category category) {
-        return categoryRepository.save(category);
-    }
-
-
+    @Override
     public List<Category> listAll() {
-       List<Category> rootCategories = categoryRepository.listRootCategories();
-
-       return listHierarchicalCategories(rootCategories);
+        // TODO Auto-generated method stub
+        List<Category> rootCategories = categoryRepository.findRootCategories();
+        return listHierarchicalCategories(rootCategories);
     }
 
     private List<Category> listHierarchicalCategories(List<Category> rootCategories) {
@@ -35,13 +39,12 @@ public class CategoryService {
             hierarchicalCategories.add(Category.copyFull(rootCategory));
 
             Set<Category> children = rootCategory.getChildren();
-            for(Category subCategory : children) {
 
+            for (Category subCategory : children) {
                 String name = "--" + subCategory.getName();
-                hierarchicalCategories.add(Category.copyFull(subCategory,name));
+                hierarchicalCategories.add(Category.copyFull(subCategory, name));
 
                 listSubHierarchicalCategories(hierarchicalCategories, subCategory, 1);
-
             }
         }
 
@@ -49,71 +52,79 @@ public class CategoryService {
     }
 
     private void listSubHierarchicalCategories(List<Category> hierarchicalCategories,
-            Category parent, int subLevel) {
-
+                                               Category parent, int subLevel) {
         Set<Category> children = parent.getChildren();
         int newSubLevel = subLevel + 1;
 
-        for(Category subCategory : children) {
-            String name ="";
-            for(int i=0; i < newSubLevel; i++) {
+        for (Category subCategory : children) {
+            String name = "";
+            for (int i = 0; i < newSubLevel; i++) {
                 name += "--";
             }
             name += subCategory.getName();
 
-            hierarchicalCategories.add(Category.copyFull(subCategory,name));
+            hierarchicalCategories.add(Category.copyFull(subCategory, name));
 
             listSubHierarchicalCategories(hierarchicalCategories, subCategory, newSubLevel);
         }
 
     }
 
+    @Override
     public List<Category> listCategoriesUsedInForm() {
 
         List<Category> categoriesUsedInForm = new ArrayList<>();
+
         Iterable<Category> categoriesInDB = categoryRepository.findAll();
 
         for (Category category : categoriesInDB) {
-            if(category.getParent() == null) {
+            if (category.getParent() == null) {
                 categoriesUsedInForm.add(Category.copyIdAndName(category));
 
                 Set<Category> children = category.getChildren();
 
-                for ( Category subCategory : children) {
+                for (Category subCategory : children) {
+                    String name = "--" + subCategory.getName();
+                    categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
-                    String name =  "--" + subCategory.getName();
-                    categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(),name));
-
-                    listSubCategoriesUsedInForm(categoriesUsedInForm,subCategory, 1);
-
+                    listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, 1);
                 }
             }
         }
+
         return categoriesUsedInForm;
     }
 
-    private void listSubCategoriesUsedInForm ( List<Category> categoriesUsedInForm,Category parent, int subLevel) {
+    private void listSubCategoriesUsedInForm(List<Category> categoriesUsedInForm,
+                                             Category parent, int subLevel){
         int newSubLevel = subLevel + 1;
         Set<Category> children = parent.getChildren();
 
         for (Category subCategory : children) {
             String name = "";
-            for(int i = 0; i < newSubLevel; i++) {
+            for (int i = 0; i < newSubLevel; i++) {
                 name += "--";
             }
+            name += subCategory.getName();
 
-            name +=subCategory.getName();
-            categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(),name));
+            categoriesUsedInForm.add(Category.copyIdAndName(subCategory.getId(), name));
 
-            listSubCategoriesUsedInForm(categoriesUsedInForm,subCategory,newSubLevel);
+            listSubCategoriesUsedInForm(categoriesUsedInForm, subCategory, newSubLevel);
         }
     }
 
+    @Override
+    public Category save(Category category) {
+        // TODO Auto-generated method stub
+        return categoryRepository.save(category);
+    }
+
+    @Override
     public Category getID(Integer id) throws CategoryNotFoundException {
-        try{
+        try {
             return categoryRepository.findById(id).get();
         } catch (NoSuchElementException ex) {
-            throw new CategoryNotFoundException("Could not find any category with ID" + id);
+            throw new CategoryNotFoundException("Could not find any category with ID " + id);
         }
     }
 

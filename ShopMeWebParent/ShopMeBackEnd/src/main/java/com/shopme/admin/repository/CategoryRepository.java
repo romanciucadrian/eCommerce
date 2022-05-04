@@ -1,4 +1,4 @@
-package com.shopme.admin.category;
+package com.shopme.admin.repository;
 
 import com.shopme.common.entity.Category;
 import org.springframework.data.jpa.repository.Query;
@@ -9,5 +9,5 @@ import java.util.List;
 public interface CategoryRepository  extends PagingAndSortingRepository<Category,Integer> {
 
 @Query("SELECT c FROM Category c WHERE c.parent.id is NULL")
-    public List<Category> listRootCategories();
+    public List<Category> findRootCategories();
 }

@@ -1,9 +1,8 @@
-package com.shopme.admin.user;
+package com.shopme.admin.controller;
 
-import com.shopme.admin.user.UserService;
+import com.shopme.admin.service.UserService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
