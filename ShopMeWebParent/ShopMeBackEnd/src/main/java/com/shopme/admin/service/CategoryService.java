@@ -28,6 +28,17 @@ public class CategoryService implements ICategoryService{
         this.categoryRepository = categoryRepository;
     }
 
+    public List<Category> listAll() {
+
+        Sort firstNameSorting = Sort.by("name").ascending();
+
+        List<Category> categoryList = new ArrayList<>();
+
+        categoryRepository.findAll(firstNameSorting).forEach(categoryList :: add);
+
+        return categoryList;
+    }
+
     @Override
     public List<Category> listByPage(CategoryPageInfo pageInfo, int pageNum, String sortDir, String keyword) {
 
