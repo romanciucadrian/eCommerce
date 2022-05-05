@@ -9,7 +9,6 @@ import java.nio.file.StandardCopyOption;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shopme.admin.controller.UserController;
 
 public class FileUploadUtil {
 
@@ -43,10 +42,7 @@ public class FileUploadUtil {
     // delete existing directory
     public static void cleanDir(String dir) {
 
-
-
         Path dirPath = Paths.get(dir);
-
 
         try {
             Files.list(dirPath).forEach(file -> {
@@ -57,15 +53,23 @@ public class FileUploadUtil {
                     try {
                         Files.delete(file);
 
-
                     } catch (IOException ex) {
-
 
                     }
                 }
             });
         } catch (IOException ex) {
 
+        }
+    }
+
+    public static void removeDir(String dir) {
+        cleanDir(dir);
+
+        try {
+            Files.delete(Paths.get(dir));
+        } catch (IOException e) {
+            //nothing
         }
     }
 
