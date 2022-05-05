@@ -23,8 +23,7 @@
             <tr>
                 <th>ID</th>
                 <th>
-                    <a class="text-white" th:href="@{'/categories/page/' + ${pageNum} + '?sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Category Name</a>
-                    <span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}" ></span>
+                    <a class="text-white" th:href="@{'/categories/page/' + ${currentPage} + '?sortDir=' + ${reverseSortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">Category Name</a>                    <span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}" ></span>
                 </th>
                 <th>
                     <a th:href="@{'/categories?sortDir=' + ${reverseSortDir}}">Category Name</a>
