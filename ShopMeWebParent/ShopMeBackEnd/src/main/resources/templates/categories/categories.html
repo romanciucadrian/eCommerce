@@ -37,7 +37,7 @@
                 <th>ID</th>
                 <th>Category Image</th>
                 <th>
-                    <a class="text-white" th:href="@{'/categories?sortDir=' + ${reverseSortDir}}">Category Name</a>
+                    <a th:href="@{'/categories?sortDir=' + ${reverseSortDir}}">Category Name</a>
                     <span th:class="${reverseSortDir == 'desc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
                 </th>
                 <th>Alias</th>
@@ -50,7 +50,7 @@
                 <td>[[${cat.id}]]</td>
                 <td>
                     <span th:if="${cat.imagePath == null}" class="fas fa-folder fa-3x icon-silver"></span>
-                    <img th:if="${cat.ImagePath != null}" th:src="@{${cat.imagePath}}" style="width: 100px" class="img-fluid" alt=""/>
+                    <img th:if="${cat.imagePath != null}" th:src="@{${cat.imagePath}}" style="width: 100px" class="img-fluid" alt=""/>
                 </td>
                 <td>[[${cat.name}]]</td>
                 <td>[[${cat.alias}]]</td>

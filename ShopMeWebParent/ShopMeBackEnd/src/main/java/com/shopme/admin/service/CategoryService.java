@@ -164,6 +164,11 @@ public class CategoryService implements ICategoryService{
         return "OK";
     }
 
+    @Override
+    public void updateCategoryEnabledStatus(Integer id, boolean enabled) {
+        categoryRepository.updateEnabledStatus(id,enabled);
+    }
+
     private SortedSet<Category> sortSubCategories(Set<Category> children) {
         return sortSubCategories(children, "asc");
     }
