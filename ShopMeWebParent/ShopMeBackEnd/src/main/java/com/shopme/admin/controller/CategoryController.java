@@ -24,7 +24,6 @@ import com.shopme.common.entity.Category;
 @Controller
 public class CategoryController {
 
-
     private  final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {
@@ -46,7 +45,6 @@ public class CategoryController {
         model.addAttribute("reverseSortDir", reverSortDir);
         model.addAttribute("listCategories", listCategories);
 
-
         return "categories/categories";
     }
 
@@ -60,9 +58,7 @@ public class CategoryController {
         model.addAttribute("listCategories", listCategories);
         model.addAttribute("pageTitle", "Create New Category");
 
-
         return "categories/category_form";
-
     }
 
     @PostMapping("/categories/save")
@@ -73,7 +69,6 @@ public class CategoryController {
 
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-
 
             category.setImage(fileName);
 
@@ -139,7 +134,6 @@ public class CategoryController {
         }
 
         return "redirect:/categories";
-
     }
 
 }
