@@ -1,6 +1,8 @@
 package com.shopme.admin.repository;
 
 import com.shopme.common.entity.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -20,6 +22,16 @@ public interface CategoryRepository  extends PagingAndSortingRepository<Category
          @Query("UPDATE Category c SET c.enabled = ?2 WHERE c.id= ?1")
          @Modifying
          void updateEnabledStatus(Integer id, boolean enabled);
+
+         @Query("SELECT c FROM Category WHERE c.parent.id is NULL")
+         public Page<Category> findRootCategories(Pageable pageable);
+
+         public Long countById(Integer id);
+
+         public void updateEnabledStatus(Integer id, boolean enabled);
+
+         @Query("SELECT c FROM Category c WHERE c.name LIKE %?1%")
+         public Page<Category> search(String keyword, Pageable pageable);
 
 
 }
