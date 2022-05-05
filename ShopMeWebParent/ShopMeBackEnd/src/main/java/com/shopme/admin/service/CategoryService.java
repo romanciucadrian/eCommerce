@@ -22,7 +22,6 @@ import com.shopme.admin.repository.CategoryRepository;
 import com.shopme.admin.service.impl.ICategoryService;
 import com.shopme.admin.util.CategoryPageInfo;
 import com.shopme.common.entity.Category;
-import com.shopme.common.entity.User;
 
 @Service
 @Transactional
@@ -55,7 +54,6 @@ public class CategoryService implements ICategoryService{
         }
 
         Pageable pageable = PageRequest.of(pageNum - 1, ROOT_CATEGORIES_PER_PAGE, sort);
-
 
         Page<Category> pageCategories = null;
 
