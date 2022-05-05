@@ -46,6 +46,7 @@
 </div>
 <!-- USER PHOTOS END -->
 
+
 <!-- STATUS -->
 <div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
   <a th:if="${enabled == true}" class="fas fa-check-circle fa-2x icon-green" style="text-decoration: none;"
@@ -59,7 +60,6 @@
      th:title="'Enable this ' + ${entityName}"
   ></a>
 </div>
-
 <!-- STATUS END -->
 
 
@@ -69,8 +69,8 @@
   <a class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}"
      th:title="'Edit this ' + ${entityName}"></a>
 </div>
-
 <!-- EDIT END -->
+
 
 <!-- DELETE -->
 <div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
@@ -82,6 +82,7 @@
   </th:block>
 </div>
 <!-- DELETE END -->
+
 
 <!-- PAGINATION -->
 <div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
@@ -125,6 +126,7 @@
   <form th:action="@{${moduleURL}}" class="form-inline m-3">
     <input type="hidden" name="sortField" th:value="${sortField}" />
     <input type="hidden" name="sortDir" th:value="${sortDir}" />
+
     Filter:&nbsp;
     <input type="search" name="keyword" th:value="${keyword}" class="form-control" required/>
     &nbsp;&nbsp;
@@ -147,7 +149,6 @@
 
 </div>
 <!-- SEARCH FORM END-->
-
 
 <div th:fragment="footer" class="text-center m-3">
   <p>Shopme Control Panel - Copyright &copy; Shopme</p>

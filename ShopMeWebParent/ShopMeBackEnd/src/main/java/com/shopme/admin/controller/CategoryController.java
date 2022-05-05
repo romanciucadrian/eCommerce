@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import com.shopme.admin.service.UserService;
 import com.shopme.admin.util.CategoryPageInfo;
 import com.shopme.admin.util.CategoryPdfExporter;
 import org.springframework.data.repository.query.Param;
@@ -52,18 +53,17 @@ public class CategoryController {
 
         CategoryPageInfo pageInfo = new CategoryPageInfo();
 
-        List<Category> listCategories = categoryService.listByPage(pageInfo, pageNum, sortDir, keyword);
+        List<Category> listCategories = categoryService.listByPage(pageInfo, pageNum, sortDir,keyword);
 
-        long startCount = (pageNum - 1) * CategoryService.ROOT_CATEGORIES_PER_PAGE + 1;
+        long startCount = (long) (pageNum - 1) * CategoryService.ROOT_CATEGORIES_PER_PAGE + 1;
         long endCount = startCount + CategoryService.ROOT_CATEGORIES_PER_PAGE - 1;
+
         if (endCount > pageInfo.getTotalElements()) {
             endCount = pageInfo.getTotalElements();
         }
 
         String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
 
-        model.addAttribute("listCategories", listCategories);
-        model.addAttribute("reverseSortDir", reverseSortDir);
         model.addAttribute("totalPages", pageInfo.getTotalPages());
         model.addAttribute("totalItems", pageInfo.getTotalElements());
         model.addAttribute("currentPage", pageNum);
@@ -72,6 +72,9 @@ public class CategoryController {
         model.addAttribute("keyword", keyword);
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("reverseSortDir", reverseSortDir);
+        
 
         return "categories/categories";
     }

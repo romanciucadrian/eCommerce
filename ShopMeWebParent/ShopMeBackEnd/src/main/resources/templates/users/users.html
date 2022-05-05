@@ -16,27 +16,23 @@
         <a th:href="@{/users/export/pdf}" style="text-decoration: none;" class="fas fa-file-pdf fa-2x icon-dark"></a>
     </div>
 
-    <div th:replace="fragments :: search_form_and_message('/users/page/1')" />
+    <div th:replace="fragments :: search_form_and_message('/users/page/1')"></div>
 
     <div class="full-details">
         <table class="table table-bordered table-striped table-hover table-responsive-xl">
             <thead class="table-dark">
             <tr>
 
-                <th th:replace="fragments :: column_link('/users', 'id', 'User ID', 'tag')"></th>
-                </th>
+                <th th:replace="fragments :: column_link('/users', 'id', 'User ID', 'none')"></th>
 
                 <th>Photos</th>
 
-                <th class="hideable-column">
-                <th th:replace="fragments :: column_link('/users', 'email', 'E-mail', 'tag')"></th>
-                </th>
+                <th th:replace="fragments :: column_link('/users', 'email', 'E-mail', 'none')"></th>
 
                 <th th:replace="fragments :: column_link('/users', 'firstName', 'First Name', 'none')"></th>
                 <th th:replace="fragments :: column_link('/users', 'lastName', 'Last Name', 'none')"></th>
 
                 <th>Roles</th>
-
                 <th th:replace="fragments :: column_link('/users', 'enabled', 'Enabled', 'none')"></th>
 
                 <th></th>
@@ -56,13 +52,15 @@
                     <td>[[${user.lastName}]]</td>
                     <td>[[${user.roles}]]</td>
 
-                <div th:replace="fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})"></div>
+                <td>
+                    <div th:replace="fragments :: status(${user.enabled}, 'user', '/users/' + ${user.id})"></div>
                 </td>
 
                 <td>
                     <div th:replace="fragments :: edit('user', '/users/edit/' + ${user.id})"></div>
                     &nbsp;&nbsp;
                     <div th:replace="fragments :: delete('user', ${user.id}, '/users/delete/' + ${user.id}, true)"></div>
+                </td>
 
             </tr>
             </tbody>
@@ -71,28 +69,23 @@
 
     <div th:replace="fragments :: pagination('/users', 'users')"></div>
 
-    <div th:replace="modal_fragments :: confirm_modal" />
+    <div th:replace="modal_fragments :: confirm_modal"></div>
 
     <div th:replace="fragments :: footer"></div>
 
 </div>
 
+<script th:src="@{/js/common_list.js}"></script>
 <script type="text/javascript">
+
+    moduleURL = "[[@{/users}]]";
 
     $(document).ready(function() {
         $(".link-delete").on("click", function(e) {
             e.preventDefault();
-            link = $(this); // ShopmeAdmin/users/delete/user.id
-            userId = link.attr("userId");
-            $("#yesButton").attr("href", link.attr("href"));
-            $("#confirmText").text("Are you sure you want to delete this user ID " + userId + "?");
-            $("#confirmModal").modal();
+            showDeleteConfirmModal($(this), 'user');
         });
     });
-
-    function clearFilter() {
-        window.location = "[[@{/users}]]";
-    }
 
 </script>
 </body>

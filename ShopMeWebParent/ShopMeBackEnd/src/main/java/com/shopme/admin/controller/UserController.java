@@ -50,19 +50,14 @@ public class UserController {
 
         Page<User> page = service.listByPage(pageNum, sortField, sortDir, keyword);
 
-
         List<User> listUsers = page.getContent();
-
 
         long startCount = (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
         long endCount = startCount + UserService.USERS_PER_PAGE - 1;
 
-
-
         if (endCount > page.getTotalElements()) {
             endCount = page.getTotalElements();
         }
-
 
         String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
 
@@ -83,9 +78,7 @@ public class UserController {
     @GetMapping("/users/new")
     public String newUser(Model model) {
 
-
         List<Role> listRoles = service.listRoles();
-
 
         User user = new User();
         user.setEnabled(true);
@@ -105,25 +98,20 @@ public class UserController {
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
-
             user.setPhotos(fileName);
             User savedUser = service.save(user);
 
-
             String uploadDir = "user-photos/" + savedUser.getId();
-
 
             FileUploadUtil.cleanDir(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         } else {
 
-
             if (user.getPhotos().isEmpty()) user.setPhotos(null);
             service.save(user);
 
         }
-
 
         redirectAttributes.addFlashAttribute("messageSuccess", "The user has been saved successfully.");
 
@@ -142,7 +130,6 @@ public class UserController {
 
             List<Role> listRoles = service.listRoles();
 
-
             model.addAttribute("user", user);
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             model.addAttribute("listRoles", listRoles);
@@ -150,8 +137,6 @@ public class UserController {
             return "users/user_form";
 
         } catch (UserNotFoundException ex) {
-
-
             redirectAttributes.addFlashAttribute("messageError", ex.getMessage());
             return "redirect:/users";
         }
@@ -166,11 +151,9 @@ public class UserController {
         try {
             service.delete(id);
 
-
             redirectAttributes.addFlashAttribute("messageSuccess",
                     "The user ID " + id + " has been deleted successfully");
         } catch (UserNotFoundException ex) {
-
 
             redirectAttributes.addFlashAttribute("messageError", ex.getMessage());
         }

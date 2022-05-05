@@ -7,7 +7,7 @@ $(document).ready(function() {
     });
 
     $("#fileImage").change(function() {
-        fileSize = this.files[0].size;
+        let fileSize = this.files[0].size;
 
         if (fileSize > 1024000) {
             this.setCustomValidity("You must choose an image less than 100KB!");
@@ -21,8 +21,8 @@ $(document).ready(function() {
 });
 
 function showImageThumbnail(fileInput) {
-    var file = fileInput.files[0];
-    var reader = new FileReader();
+    let file = fileInput.files[0];
+    let reader = new FileReader();
     reader.onload = function(e) {
         $("#thumbnail").attr("src", e.target.result);
     };
