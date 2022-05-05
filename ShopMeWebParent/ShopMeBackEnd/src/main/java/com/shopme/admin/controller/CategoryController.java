@@ -139,11 +139,6 @@ public class CategoryController {
     }
 
 
-    @GetMapping("/categories/export/pdf")
-    public void exportToPDF(HttpServletResponse response) throws IOException {
-
-    }
-
     @GetMapping("/categories/{id}/enabled/{status}")
     public String updateEnabledStatus(@PathVariable("id") Integer id,
                                       @PathVariable("status") boolean enabled,
@@ -162,6 +157,18 @@ public class CategoryController {
         }
 
         return "redirect:/categories";
+    }
+
+    @GetMapping("/categories/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws IOException {
+
+        List<Category> listCategories = categoryService.listAll();
+
+        CategoryPdfExporter exporter = new CategoryPdfExporter();
+
+        exporter.export(listCategories, response);
+
+
     }
 
 }
