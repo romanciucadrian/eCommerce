@@ -72,4 +72,11 @@ public class Brand {
         return "Brand [id=" + id + ", name=" + name + ", categories=" + categories + "]";
     }
 
+    @Transient
+    public String getImagePath() {
+        if (this.id == null) return "/images/imageCAT.png";
+
+        return "/brand-logos/" + this.id + "/" + this.logo;
+    }
+
 }
