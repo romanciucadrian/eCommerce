@@ -27,6 +27,8 @@ public class Brand {
     )
     private Set<Category> categories = new HashSet<>();
 
+    public Brand() {
+    }
 
     public Integer getId() {
         return id;
