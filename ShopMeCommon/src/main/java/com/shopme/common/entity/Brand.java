@@ -30,6 +30,16 @@ public class Brand {
     public Brand() {
     }
 
+    public Brand(String name) {
+        this.name = name;
+        this.logo = "brand-logo.png";
+    }
+
+    public Brand(Integer id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -60,11 +70,6 @@ public class Brand {
 
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
-    }
-
-    public Brand(String name) {
-        this.name = name;
-        this.logo = "brand-logo.png";
     }
 
     @Override
