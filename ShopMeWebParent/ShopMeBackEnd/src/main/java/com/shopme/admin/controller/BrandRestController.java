@@ -14,7 +14,7 @@ public class BrandRestController {
         this.brandService = brandService;
     }
 
-    @PostMapping("/brands/check_email")
+    @PostMapping("/brands/check_unique")
     public String checkDuplicateEmail(@Param("id") Integer id,
                                       @Param("name") String name) {
 

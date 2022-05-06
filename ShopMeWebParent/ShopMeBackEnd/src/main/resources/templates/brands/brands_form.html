@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: page_head(${pageTitle})" />
+<head th:replace="fragments :: page_head(${pageTitle})"></head>
 <body>
 <div class="container-fluid">
     <div th:replace="navigation :: menu"></div>
@@ -9,8 +9,7 @@
     </div>
 
     <form th:action="@{/brands/save}" method="post" style="max-width: 500px; margin: 0 auto"
-          enctype="multipart/form-data"
-          onsubmit="return checkUnique(this)"
+          enctype="multipart/form-data" onsubmit="return checkUnique(this)"
           th:object="${brand}">
         <input type="hidden" th:field="*{id}" />
         <div class="border border-secondary rounded p-3">
@@ -74,22 +73,22 @@
     moduleURL = "[[@{/brands}]]";
 
     $(document).ready(function() {
-       let dropdownCategories = $("#categories");
-        let divChosenCategories = $("#chosenCategories");
-
+        dropdownCategories = $("#categories");
+        divChosenCategories = $("#chosenCategories");
         dropdownCategories.change(function() {
             divChosenCategories.empty();
             showChosenCategories();
         });
+
         showChosenCategories();
     });
 
     function showChosenCategories() {
-        dropdownCategories.children("option:selected").each(function() {
 
-          let selectedCategory = $(this);
-          let catId = selectedCategory.val();
-          let catName = selectedCategory.text().replace(/-/g, "");
+        dropdownCategories.children("option:selected").each(function() {
+            selectedCategory = $(this);
+            catId = selectedCategory.val();
+            catName = selectedCategory.text().replace(/-/g, "");
             $('#remove-'+catId).remove();
             divChosenCategories.append("<span id='remove-"+catId+"' class='badge badge-secondary m-1'>" + catName + "</span>");
         });
