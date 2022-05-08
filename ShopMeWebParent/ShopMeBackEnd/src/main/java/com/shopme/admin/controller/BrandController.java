@@ -31,6 +31,7 @@ public class BrandController {
         this.categoryService = categoryService;
     }
 
+//<!-- BRANDS -->
     @GetMapping("/brands")
     public String listAll(Model model) {
 
@@ -71,7 +72,7 @@ public class BrandController {
         } else {
             brandService.save(brand);
         }
-        ra.addFlashAttribute("messageSuccess", "The brand has been save !");
+        ra.addFlashAttribute("messageSuccess", "The brand has been saved !");
         return  "redirect:/brands";
     }
 
@@ -112,4 +113,6 @@ public class BrandController {
         }
         return "redirect:/brands";
     }
+//<!-- BRANDS END -->
+
 }
