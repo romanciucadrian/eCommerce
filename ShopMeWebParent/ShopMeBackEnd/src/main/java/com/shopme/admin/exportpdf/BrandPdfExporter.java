@@ -65,7 +65,7 @@ public class BrandPdfExporter extends AbstractExporter{
         cell.setPhrase(new Phrase("Brand Name", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Cateogories of Brand", font));
+        cell.setPhrase(new Phrase("Categories of Brand", font));
         table.addCell(cell);
 
     }
