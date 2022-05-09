@@ -51,8 +51,9 @@ public class BrandController {
 
         List<Brand> listBrands = page.getContent();
 
-        long startCount = (long) (pageNum - 1) * BrandService.BRANDS_PER_PAGE + 1;
+        long startCount = (pageNum - 1) * BrandService.BRANDS_PER_PAGE + 1;
         long endCount = startCount + BrandService.BRANDS_PER_PAGE - 1;
+
         if( endCount > page.getTotalElements()) {
             endCount = page.getTotalElements();
         }
@@ -64,10 +65,12 @@ public class BrandController {
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
         model.addAttribute("totalItems", page.getTotalElements());
+        model.addAttribute("listBrands", listBrands);
+        model.addAttribute("sortField", sortField);
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", reverseSortDir);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("listBrands", listBrands);
+
 
         return "brands/brands";
     }

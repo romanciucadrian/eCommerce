@@ -37,7 +37,6 @@
    th:href="@{${moduleURL} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${label}]]</a>
 <!-- PAGE LINK END -->
 
-
 <!-- USER PHOTOS -->
 <div th:fragment="user_photos" th:remove="tag">
   <span th:if="${user.photos == null}" class="fas fa-portrait fa-3x icon-silver"></span>
@@ -45,7 +44,6 @@
        style="width: 100px" />
 </div>
 <!-- USER PHOTOS END -->
-
 
 <!-- STATUS -->
 <div th:fragment="status(enabled, entityName, entityURL)" th:remove="tag">
@@ -60,16 +58,18 @@
      th:title="'Enable this ' + ${entityName}"
   ></a>
 </div>
+
 <!-- STATUS END -->
 
 
 <!-- EDIT -->
+
 <div th:fragment="edit(entityName, editURL)" th:remove="tag">
-  <a style="text-decoration: none" class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}"
+  <a style="text-decoration: none;" class="fas fa-edit fa-2x icon-green" th:href="@{${editURL}}"
      th:title="'Edit this ' + ${entityName}"></a>
 </div>
-<!-- EDIT END -->
 
+<!-- EDIT END -->
 
 <!-- DELETE -->
 <div th:fragment="delete(entityName, entityId, deleteURL, visible)" th:remove="tag">
@@ -81,7 +81,6 @@
   </th:block>
 </div>
 <!-- DELETE END -->
-
 
 <!-- PAGINATION -->
 <div th:fragment="pagination(moduleURL, entityName)" th:remove="tag">
