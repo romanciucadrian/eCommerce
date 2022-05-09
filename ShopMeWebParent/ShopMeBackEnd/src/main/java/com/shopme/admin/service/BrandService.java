@@ -4,6 +4,10 @@ import com.shopme.admin.error.BrandNotFoundException;
 import com.shopme.admin.repository.BrandRepository;
 import com.shopme.admin.service.impl.IBrandService;
 import com.shopme.common.entity.Brand;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +17,8 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 public class BrandService implements IBrandService {
+
+    public static final int BRANDS_PER_PAGE = 10;
 
     private final BrandRepository brandRepository;
 
@@ -66,5 +72,20 @@ public class BrandService implements IBrandService {
             }
         }
         return "OK";
+    }
+
+    @Override
+    public Page<Brand> listByPage(int pageNum, String sortField, String sortDir, String keyword) {
+
+        Sort sort = Sort.by(sortField);
+
+        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+
+        Pageable pageable = PageRequest.of(pageNum-1, BRANDS_PER_PAGE, sort);
+
+        if(keyword != null) {
+            return brandRepository.findAll(keyword,pageable);
+        }
+        return brandRepository.findAll(pageable);
     }
 }

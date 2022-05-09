@@ -106,7 +106,7 @@ public class BrandController {
 
             FileUploadUtil.removeDir(brandDir);
 
-            ra.addFlashAttribute("messageSuccess", "The brand ID " + id + "has been delete!");
+            ra.addFlashAttribute("messageSuccess", "The brand ID " + id + " has been deleted!");
         } catch (BrandNotFoundException ex) {
 
             ra.addFlashAttribute("messageError", ex.getMessage());
