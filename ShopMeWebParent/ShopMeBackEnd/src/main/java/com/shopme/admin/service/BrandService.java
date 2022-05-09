@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -28,7 +29,15 @@ public class BrandService implements IBrandService {
 
     @Override
     public List<Brand> listAll() {
-        return (List<Brand>) brandRepository.findAll();
+
+        Sort firstNameSorting = Sort.by("name").ascending();
+
+        List<Brand> brandList = new ArrayList<>();
+
+        brandRepository.findAll(firstNameSorting).forEach(brandList::add);
+
+        return brandList;
+
     }
 
     @Override
