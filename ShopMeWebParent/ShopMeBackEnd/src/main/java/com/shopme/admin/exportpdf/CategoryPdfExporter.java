@@ -1,4 +1,4 @@
-package com.shopme.admin.util;
+package com.shopme.admin.exportpdf;
 
 import java.awt.Color;
 import java.io.IOException;
@@ -15,9 +15,10 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.shopme.admin.util.AbstractExporter;
 import com.shopme.common.entity.Category;
 
-public class CategoryPdfExporter extends AbstractExporter{
+public class CategoryPdfExporter extends AbstractExporter {
 
     public void export(List<Category> listCategories, HttpServletResponse response) throws IOException {
 
@@ -32,7 +33,7 @@ public class CategoryPdfExporter extends AbstractExporter{
         font.setSize(18);
         font.setColor(Color.BLUE);
 
-        Paragraph paragraph = new Paragraph("List of User", font);
+        Paragraph paragraph = new Paragraph("List of Category", font);
         paragraph.setAlignment(Paragraph.ALIGN_CENTER);
 
         document.add(paragraph);

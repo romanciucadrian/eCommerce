@@ -1,10 +1,11 @@
-package com.shopme.admin.util;
+package com.shopme.admin.exportpdf;
 
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.shopme.admin.util.AbstractExporter;
 import com.shopme.common.entity.User;
 
 import javax.servlet.http.HttpServletResponse;
