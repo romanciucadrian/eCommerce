@@ -61,6 +61,10 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    @Override
+    public String toString() {
+        return "Product [id= " + id + ",name= " + name + "]";
+    }
 
 
 }
