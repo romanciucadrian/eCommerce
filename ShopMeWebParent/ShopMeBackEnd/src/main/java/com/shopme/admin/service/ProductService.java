@@ -1,6 +1,7 @@
-package com.shopme.admin.service.impl;
+package com.shopme.admin.service;
 
 import com.shopme.admin.repository.ProductRepository;
+import com.shopme.admin.service.impl.IProductService;
 import com.shopme.common.entity.Product;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class ProductService implements IProductService{
+public class ProductService implements IProductService {
 
     private final ProductRepository productRepository;
 
