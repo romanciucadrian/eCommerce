@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @RestController
 public class BrandRestController {
@@ -32,19 +33,22 @@ public class BrandRestController {
     }
 
     @GetMapping("/brands/{id}/categories")
-    public List<CategoryDTO> listCategoriesByBrand(@PathVariable(name = "id") Integer id) throws BrandNotFoundRestException {
+    public List<CategoryDTO> listCategoriesByBrand(@PathVariable(name = "id") Integer brandId) throws BrandNotFoundRestException {
 
         List<CategoryDTO> listCategories = new ArrayList<>();
 
         try {
-            Brand brand = brandService.getCategories();
+            Brand brand = brandService.get(brandId);
+            Set<Category> categories = brand.getCategories();
 
             for (Category category : categories) {
 
                 CategoryDTO categoryDTO = new CategoryDTO(category.getId(), category.getName());
                 listCategories.add(categoryDTO);
             }
+
             return listCategories;
+
         } catch (BrandNotFoundException e) {
             throw new BrandNotFoundRestException();
         }

@@ -82,8 +82,8 @@
 
 
     function getCategories() {
-        brandId = dropdownBrands.val();
-        url = brandModuleURL + "/" + brandId + "/categories";
+       let brandId = dropdownBrands.val();
+       let url = brandModuleURL + "/" + brandId + "/categories";
 
         $.get(url, function(responseJson) {
             $.each(responseJson, function(index, category) {

@@ -24,6 +24,9 @@ public class Product {
     @Column(unique = true, length = 256, nullable = false)
     private String alias;
 
+    @Column(length = 512, nullable = false, name = "short_description")
+    private String shortDescription;
+
     @Column(length = 4096, nullable = false, name = "full_description")
     private String fullDescription;
 
@@ -42,7 +45,6 @@ public class Product {
     private float cost;
 
     // Generate automatically column name as "price"
-
     private float price;
 
     @Column(name = "discount_percent")
