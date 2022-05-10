@@ -33,7 +33,8 @@ public class BrandRestController {
     }
 
     @GetMapping("/brands/{id}/categories")
-    public List<CategoryDTO> listCategoriesByBrand(@PathVariable(name = "id") Integer brandId) throws BrandNotFoundRestException {
+    public List<CategoryDTO> listCategoriesByBrand(@PathVariable(name = "id") Integer brandId)
+            throws BrandNotFoundRestException {
 
         List<CategoryDTO> listCategories = new ArrayList<>();
 

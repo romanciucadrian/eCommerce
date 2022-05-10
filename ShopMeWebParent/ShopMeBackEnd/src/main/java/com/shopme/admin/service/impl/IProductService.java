@@ -7,4 +7,7 @@ import com.shopme.common.entity.Product;
 public interface IProductService {
 
     public List<Product> listAll();
+
+    public Product save(Product product);
+
 }
