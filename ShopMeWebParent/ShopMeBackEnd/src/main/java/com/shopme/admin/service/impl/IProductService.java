@@ -10,4 +10,6 @@ public interface IProductService {
 
     public Product save(Product product);
 
+    public String checkUnique(Integer id, String name);
+
 }
