@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.shopme.common.entity.Product;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ProductController {
@@ -50,7 +51,13 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public String saveProduct(Product product) {
+    public String saveProduct(Product product,
+                              RedirectAttributes redirectAttributes) {
+
+        productService.save(product);
+
+        redirectAttributes.addFlashAttribute("messageSuccess", "The product has been saved !");
+
         return "redirect:/products";
     }
 }
