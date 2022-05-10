@@ -12,4 +12,6 @@ public interface IProductService {
 
     public String checkUnique(Integer id, String name);
 
+    public void updateProductEnabledStatus(Integer id, boolean enabled);
+
 }

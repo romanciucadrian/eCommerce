@@ -57,4 +57,9 @@ public class ProductService implements IProductService {
         }
         return "OK";
     }
+
+    @Override
+    public void updateProductEnabledStatus(Integer id, boolean enabled) {
+        productRepository.updateEnabledStatus(id, enabled);
+    }
 }
