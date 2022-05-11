@@ -17,4 +17,6 @@ public interface IProductService {
 
     public void delete(Integer id) throws ProductNotFoundException;
 
+    public Product get(Integer id) throws ProductNotFoundException;
+
 }
