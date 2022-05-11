@@ -1,5 +1,6 @@
 package com.shopme.admin.service;
 
+import com.shopme.admin.error.ProductNotFoundException;
 import com.shopme.admin.repository.ProductRepository;
 import com.shopme.admin.service.impl.IProductService;
 import com.shopme.common.entity.Product;
@@ -61,5 +62,15 @@ public class ProductService implements IProductService {
     @Override
     public void updateProductEnabledStatus(Integer id, boolean enabled) {
         productRepository.updateEnabledStatus(id, enabled);
+    }
+
+    @Override
+    public void delete(Integer id) throws ProductNotFoundException {
+        Long countById = productRepository.countById(id);
+
+        if (countById == null || countById == 0) {
+            throw new ProductNotFoundException("Could not find any product with ID " + id);
+        }
+        productRepository.deleteById(id);
     }
 }
