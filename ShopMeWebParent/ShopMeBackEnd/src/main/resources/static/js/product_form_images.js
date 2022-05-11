@@ -20,6 +20,14 @@ $(document).ready(function() {
 });
 function showExtraImageThumbnail(fileInput, index) {
     let file = fileInput.files[0];
+
+    let fileName = file.name;
+
+    let imageNameHiddenField = $("#imageName" + index);
+    if (imageNameHiddenField.length) {
+        imageNameHiddenField.val(fileName);
+    }
+
     let reader = new FileReader();
     reader.onload = function(e) {
         $("#extraThumbnail" + index).attr("src", e.target.result);
@@ -30,7 +38,7 @@ function showExtraImageThumbnail(fileInput, index) {
     }
 }
 function addNextExtraImageSection(index) {
-    htmlExtraImage = `
+    let htmlExtraImage = `
 		<div class="col border m-3 p-2" id="divExtraImage${index}">
 			<div id="extraImageHeader${index}"><label>Extra Image #${index + 1}:</label></div>
 			<div class="m-2">
@@ -44,7 +52,7 @@ function addNextExtraImageSection(index) {
 			</div>
 		</div>	
 	`;
-    htmlLinkRemove = `
+    let htmlLinkRemove = `
 		<a class="btn fas fa-times-circle fa-2x icon-dark float-right"
 			href="javascript:removeExtraImage(${index - 1})" 
 			title="Remove this image"></a>
