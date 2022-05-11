@@ -65,6 +65,8 @@ public class ProductController {
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
+            product.setMainImage(fileName);
+
             Product savedProduct = productService.save(product);
 
             String uploadDir = "../product-images/" + savedProduct.getId();
@@ -84,6 +86,8 @@ public class ProductController {
     public String updateCategoryEnabledStatus(@PathVariable("id") Integer id,
                                               @PathVariable("status") boolean enabled,
                                               RedirectAttributes redirectAttributes) {
+
+        productService.updateProductEnabledStatus(id, enabled);
 
         String status = enabled ? "enabled" : "disabled";
         String message = "The product ID " + id + " has been " + status;
