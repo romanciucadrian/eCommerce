@@ -1,4 +1,4 @@
-var extraImagesCount = 0;
+let extraImagesCount = 0;
 
 $(document).ready(function() {
 
@@ -19,8 +19,8 @@ $(document).ready(function() {
     });
 });
 function showExtraImageThumbnail(fileInput, index) {
-    var file = fileInput.files[0];
-    var reader = new FileReader();
+    let file = fileInput.files[0];
+    let reader = new FileReader();
     reader.onload = function(e) {
         $("#extraThumbnail" + index).attr("src", e.target.result);
     };
