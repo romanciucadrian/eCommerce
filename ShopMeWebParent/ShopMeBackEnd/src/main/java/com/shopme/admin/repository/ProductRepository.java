@@ -13,5 +13,7 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
     @Modifying
     public void updateEnabledStatus(Integer id, boolean enabled);
 
+    public Long countById(Integer id);
+
 
 }
