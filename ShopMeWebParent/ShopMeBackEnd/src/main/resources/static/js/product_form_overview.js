@@ -11,13 +11,24 @@ $(document).ready(function() {
         getCategories();
     });
 
-    getCategories();
+    getCategoriesForNewForm();
 
 });
 
+function getCategoriesForNewForm() {
+    let catIdField = $("#categoryId");
+    let editMode = false;
+
+    if (catIdField.length) {
+        editMode = true;
+    }
+
+    if (!editMode) getCategories();
+}
+
 function getCategories() {
-    brandId = dropdownBrands.val();
-    url = brandModuleURL + "/" + brandId + "/categories";
+    let brandId = dropdownBrands.val();
+    let url = brandModuleURL + "/" + brandId + "/categories";
 
     $.get(url, function(responseJson) {
         $.each(responseJson, function(index, category) {
