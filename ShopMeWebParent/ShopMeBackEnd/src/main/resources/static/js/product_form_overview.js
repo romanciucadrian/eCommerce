@@ -38,12 +38,12 @@ function getCategories() {
 }
 
 function checkUnique(form) {
-    productId = $("#id").val();
-    productName = $("#name").val();
+    let productId = $("#id").val();
+    let productName = $("#name").val();
 
-    csrfValue = $("input[name='_csrf']").val();
+    let csrfValue = $("input[name='_csrf']").val();
 
-    params = {id: productId, name: productName, _csrf: csrfValue};
+    let params = {id: productId, name: productName, _csrf: csrfValue};
 
     $.post(checkUniqueUrl, params, function(response) {
         if (response == "OK") {

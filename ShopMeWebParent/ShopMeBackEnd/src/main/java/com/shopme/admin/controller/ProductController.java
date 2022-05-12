@@ -59,6 +59,7 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("listBrands", listBrands);
         model.addAttribute("pageTitle", "Create New Product");
+        model.addAttribute("numberOfExistingExtraImages", 0);
 
         return "products/product_form";
     }
@@ -72,7 +73,8 @@ public class ProductController {
                               @RequestParam(name = "detailNames", required = false) String[] detailNames,
                               @RequestParam(name = "detailValues", required = false) String[] detailValues,
                               @RequestParam(name = "imageIDs", required = false) String[] imageIDs,
-                              @RequestParam(name = "imageNames", required = false) String[] imageNames) throws IOException {
+                              @RequestParam(name = "imageNames", required = false) String[] imageNames)
+            throws IOException {
 
         setMainImageName(mainImageMultipart, product);
 
@@ -264,5 +266,24 @@ public class ProductController {
             images.add(new ProductImage(id, name, product));
         }
         product.setImages(images);
+    }
+
+    @GetMapping("/products/detail/{id}")
+    public String viewProductDetails(@PathVariable("id") Integer id, Model model,
+                                     RedirectAttributes ra) {
+
+        try {
+            Product product = productService.get(id);
+
+            model.addAttribute("product", product);
+
+            return "products/product_detail_modal";
+
+        } catch (ProductNotFoundException e) {
+
+            ra.addFlashAttribute("messageError", e.getMessage());
+
+            return "redirect:/products";
+        }
     }
 }
