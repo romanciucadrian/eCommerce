@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <head th:replace="fragments :: page_head(${pageTitle}, 'tag')" />
+    <head th:replace="fragments :: page_head(${pageTitle}, 'tag')"></head>
     <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}" />
     <script th:src="@{/richtext/jquery.richtext.min.js}"></script>
 </head>
@@ -12,7 +12,8 @@
         <h2>Manage Products | [[${pageTitle}]]</h2>
     </div>
 
-    <form th:action="@{/products/save}" method="post" onsubmit="return checkUnique(this)"
+    <form th:action="@{/products/save}" method="post"
+          onsubmit="return checkUnique(this)"
           enctype="multipart/form-data"
           th:object="${product}">
         <input type="hidden" th:field="*{id}" />
@@ -76,7 +77,7 @@
 
     moduleURL = "[[@{/products}]]";
     brandModuleURL = "[[@{/brands}]]";
-    defaultImageThumbnailSrc = "[[@{/images/image-thumbnail.png}]]";
+    defaultImageThumbnailSrc = "[[@{/images/imageCAT.png}]]";
     checkUniqueUrl = "[[@{/products/check_unique}]]";
 
 </script>
