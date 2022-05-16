@@ -115,4 +115,16 @@ public class ProductService implements IProductService {
         return productRepository.findAll(pageable);
     }
 
+    @Override
+    public void saveProductPrice(Product productInForm) {
+
+        Product productInDB = productRepository.findById(productInForm.getId()).get();
+
+        productInDB.setCost(productInForm.getCost());
+        productInDB.setPrice(productInForm.getPrice());
+        productInDB.setDiscountPercent(productInForm.getDiscountPercent());
+
+        productRepository.save(productInDB);
+    }
+
 }

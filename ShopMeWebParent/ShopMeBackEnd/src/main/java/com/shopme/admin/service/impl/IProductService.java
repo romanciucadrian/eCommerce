@@ -22,4 +22,6 @@ public interface IProductService {
 
     public Page<Product> listByPage(int pageNum, String sortField, String sortDir, String keyword, Integer categoryId);
 
+    public void saveProductPrice(Product productInForm);
+
 }
