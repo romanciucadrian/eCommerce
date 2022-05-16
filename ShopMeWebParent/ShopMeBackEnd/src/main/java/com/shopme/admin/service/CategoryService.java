@@ -16,7 +16,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.shopme.admin.error.CategoryNotFoundException;
+import com.shopme.common.error.CategoryNotFoundException;
 import com.shopme.admin.repository.CategoryRepository;
 import com.shopme.admin.service.impl.ICategoryService;
 import com.shopme.admin.util.CategoryPageInfo;

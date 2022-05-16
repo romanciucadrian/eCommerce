@@ -1,6 +1,6 @@
 package com.shopme.admin.service;
 
-import com.shopme.admin.error.ProductNotFoundException;
+import com.shopme.common.error.ProductNotFoundException;
 import com.shopme.admin.repository.ProductRepository;
 import com.shopme.admin.service.impl.IProductService;
 import com.shopme.common.entity.Product;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import com.shopme.common.error.CategoryNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.shopme.common.entity.Category;
@@ -37,8 +38,13 @@ public class CategoryService implements ICategoryService{
     }
 
     @Override
-    public Category getCategory(String alias) {
-        return categoryRepository.findByAliasEnabled(alias);
+    public Category getCategory(String alias) throws CategoryNotFoundException {
+        Category category = categoryRepository.findByAliasEnabled(alias);
+        if (category == null) {
+            throw new CategoryNotFoundException("Could not find any categories with alias " + alias);
+        }
+
+        return category;
     }
 
     @Override

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.shopme.admin.error.CategoryNotFoundException;
+import com.shopme.common.error.CategoryNotFoundException;
 import com.shopme.admin.service.CategoryService;
 import com.shopme.admin.util.FileUploadUtil;
 import com.shopme.common.entity.Category;

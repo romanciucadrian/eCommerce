@@ -2,7 +2,7 @@ package com.shopme.admin.service.impl;
 
 import java.util.List;
 
-import com.shopme.admin.error.CategoryNotFoundException;
+import com.shopme.common.error.CategoryNotFoundException;
 import com.shopme.admin.util.CategoryPageInfo;
 import com.shopme.common.entity.Category;
 

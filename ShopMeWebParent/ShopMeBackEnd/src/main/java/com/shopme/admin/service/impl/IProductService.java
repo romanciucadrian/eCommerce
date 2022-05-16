@@ -2,7 +2,7 @@ package com.shopme.admin.service.impl;
 
 import java.util.List;
 
-import com.shopme.admin.error.ProductNotFoundException;
+import com.shopme.common.error.ProductNotFoundException;
 import com.shopme.common.entity.Product;
 import org.springframework.data.domain.Page;
 

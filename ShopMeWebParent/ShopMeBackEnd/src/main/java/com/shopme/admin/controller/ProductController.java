@@ -1,14 +1,9 @@
 package com.shopme.admin.controller;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import com.shopme.admin.error.ProductNotFoundException;
+import com.shopme.common.error.ProductNotFoundException;
 import com.shopme.admin.helper.ProductSaveHelper;
 import com.shopme.admin.security.ShopmeUserDetails;
 import com.shopme.admin.service.BrandService;
@@ -17,13 +12,11 @@ import com.shopme.admin.service.ProductService;
 import com.shopme.admin.util.FileUploadUtil;
 import com.shopme.common.entity.Brand;
 import com.shopme.common.entity.Category;
-import com.shopme.common.entity.ProductImage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
