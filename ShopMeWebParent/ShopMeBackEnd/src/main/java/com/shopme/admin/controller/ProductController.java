@@ -142,7 +142,7 @@ public class ProductController {
 
         ProductSaveHelper.deleteExtraImagesWeredRemovedOnForm(product);
 
-        redirectAttributes.addFlashAttribute("messageSuccess", "The product has been saved successfully.");
+        redirectAttributes.addFlashAttribute("message", "The product has been saved successfully.");
 
         return "redirect:/products";
     }
@@ -157,7 +157,7 @@ public class ProductController {
         String status = enabled ? "enabled" : "disabled";
         String message = "The product ID " + id + " has been " + status;
 
-        redirectAttributes.addFlashAttribute("messageSuccess", message);
+        redirectAttributes.addFlashAttribute("message", message);
 
         return  "redirect:/products";
     }

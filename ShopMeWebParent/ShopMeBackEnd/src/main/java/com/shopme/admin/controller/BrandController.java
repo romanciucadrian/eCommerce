@@ -33,7 +33,6 @@ public class BrandController {
         this.categoryService = categoryService;
     }
 
-//<!-- BRANDS -->
     @GetMapping("/brands")
     public String listFirstPage(Model model) {
 
@@ -146,6 +145,5 @@ public class BrandController {
         }
         return "redirect:/brands";
     }
-//<!-- BRANDS END -->
 
 }
