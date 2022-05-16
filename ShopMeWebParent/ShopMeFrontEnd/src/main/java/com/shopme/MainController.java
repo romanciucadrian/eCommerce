@@ -1,4 +1,4 @@
-package com.shopme.common.entity.site;
+package com.shopme;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,5 +10,4 @@ public class MainController {
     public String viewHomePage() {
         return "index";
     }
-
 }
