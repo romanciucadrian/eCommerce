@@ -54,7 +54,7 @@ public class CategoryController {
 
         List<Category> listCategories = categoryService.listByPage(pageInfo, pageNum, sortDir,keyword);
 
-        long startCount = (long) (pageNum - 1) * CategoryService.ROOT_CATEGORIES_PER_PAGE + 1;
+        long startCount = (pageNum - 1) * CategoryService.ROOT_CATEGORIES_PER_PAGE + 1;
         long endCount = startCount + CategoryService.ROOT_CATEGORIES_PER_PAGE - 1;
 
         if (endCount > pageInfo.getTotalElements()) {

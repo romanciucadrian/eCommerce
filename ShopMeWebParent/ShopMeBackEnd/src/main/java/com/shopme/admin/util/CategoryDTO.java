@@ -2,7 +2,7 @@ package com.shopme.admin.util;
 
 public class CategoryDTO {
 
-    Integer id;
+    private Integer id;
     private String name;
 
     public CategoryDTO() {
