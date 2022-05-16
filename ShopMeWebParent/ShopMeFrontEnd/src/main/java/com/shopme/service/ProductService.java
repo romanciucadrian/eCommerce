@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class ProductService implements IProductService {
 
     public static final int PRODUCTS_PER_PAGE = 10;
+    public static final int SEARCH_RESULTS_PER_PAGE = 10;
 
     private final ProductRepository productRepository;
 
@@ -38,6 +39,13 @@ public class ProductService implements IProductService {
             throw new ProductNotFoundException("Could not find any product with alias " + alias);
         }
         return product;
+    }
+
+    @Override
+    public Page<Product> search(String keyword, int pageNum) {
+        Pageable pageable = PageRequest.of(pageNum-1, SEARCH_RESULTS_PER_PAGE);
+
+        return productRepository.search(keyword, pageable);
     }
 
 }
