@@ -200,9 +200,7 @@ public class CategoryService implements ICategoryService{
             if (categoryByAlias != null && categoryByAlias.getId() != id) {
                 return "DuplicateAlias";
             }
-
         }
-
         return "OK";
     }
 
