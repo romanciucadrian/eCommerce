@@ -2,10 +2,7 @@ package com.shopme.admin.controller;
 
 import com.shopme.admin.repository.CountryRepository;
 import com.shopme.common.entity.Country;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,5 +25,10 @@ public class CountryRestController {
         Country savedCountry = countryRepository.save(country);
 
         return String.valueOf(savedCountry.getId());
+    }
+
+    @GetMapping("/countries/delete/{id}")
+    public void delete(@PathVariable("id") Integer id) {
+        countryRepository.deleteById(id);
     }
 }
